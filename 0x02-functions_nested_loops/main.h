@@ -9,3 +9,7 @@
  * On error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(char c);
+
+/*this function prints alphabet*/
+void print_alphabet(void);
+
