@@ -1,65 +1,39 @@
+#include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
 
 /**
- * _strlen - length of a string
- * @s: input char
- * Return: length of a string
+ * *argstostr - concatenates all arguments of program
+ *
+ * @ac: argument count
+ * @av: point to pointer to arguments
+ * Return: pointer to new string or NULL if failed
  */
-
-int _strlen(char *s)
-{
-	int l = 0;
-
-	while (*s != '\0')
-	{
-		s++;
-		l++;
-	}
-	return (l);
-}
-
-/**
- * argstostr - concat
- * @ac: count
- * @av: vector
- * Return: string
- */
-
 char *argstostr(int ac, char **av)
 {
-	int i, j, k;
-	int len, R = 0;
-	char *p;
+	int i, k, n, size;
+	char *str;
 
-	if (!ac || !av)
-	{
+	if (ac == 0 || av == NULL)
 		return (NULL);
-	}
-	R = 0;
-
 	for (i = 0; i < ac; i++)
 	{
-		len = _strlen(av[i]) + 1;
-		R += len;
+		for (k = 0; av[i][k] != '\0'; k++)
+			;
+		size += k + 1;
 	}
-	p = malloc(sizeof(char) * R + 1);
-
-	if (!p)
-	{
+	str = malloc(size + 1);
+	if (str == 0)
 		return (NULL);
-	}
-
+	n = 0;
 	for (i = 0; i < ac; i++)
 	{
-		len = _strlen(av[i]);
-
-		for (j = 0; j < len; j++, k++)
+		for (k = 0; av[i][k] != '\0'; k++)
 		{
-			p[k] = av[i][j];
+			str[n] = av[i][k];
+			n++;
 		}
-		p[k++] = '\n';
+		str[n] = '\n';
+		n++;
 	}
-	p[k] = '\0';
-	return (p);
+	return (str);
 }
