@@ -3,4 +3,4 @@
 ---
 
 ## Author
-* **Edward Oloo**
+* **Edward Alex**
